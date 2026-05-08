@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Confirmados</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0b1a2b;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #e60023;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #1e90ff;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background: red;
+    color: #fff;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🕷️ Confirmados</h1>
+
+<ul id="lista"></ul>
+
+<button onclick="limpar()">Limpar Lista</button>
+
+</div>
+
+<script>
+let lista = JSON.parse(localStorage.getItem("confirmados")) || [];
+
+let ul = document.getElementById("lista");
+
+lista.forEach(nome => {
+    let li = document.createElement("li");
+    li.textContent = nome;
+    ul.appendChild(li);
+});
+
+function limpar() {
+    localStorage.removeItem("confirmados");
+    location.reload();
+}
+</script>
+
+</body>
+</html>
