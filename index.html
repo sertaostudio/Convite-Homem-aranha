@@ -496,12 +496,11 @@ src="image/Mascara.png">
 function confirmar(){
 
     let nome =
-    document.getElementById("nome").value;
+    document.getElementById("nome").value.trim();
 
     if(nome === ""){
 
         alert("Digite seu nome!");
-
         return;
 
     }
@@ -518,9 +517,8 @@ function confirmar(){
         JSON.stringify(lista)
     );
 
-    alert("Presença confirmada!");
-
-    document.getElementById("nome").value = "";
+    // ABRE A PAGINA DE CONFIRMADOS
+    window.location.href = "confirmado.html";
 
 }
 
