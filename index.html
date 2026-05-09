@@ -4,7 +4,6 @@
 
 <meta charset="UTF-8">
 
-<!-- CORREÇÃO DO ZOOM NO IPHONE/ANDROID -->
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -22,14 +21,10 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 html,
 body{
-
     width:100%;
     min-height:100%;
-
     overflow-x:hidden;
-
     -webkit-text-size-adjust:100%;
-
 }
 
 body{
@@ -51,24 +46,19 @@ body{
 }
 
 /* ===================================
-   POSIÇÃO DO HOMEM-ARANHA
+   CONFIG HOMEM-ARANHA
 =================================== */
 
 :root{
 
-    /* SOBE E DESCE */
-    --spider-top: -140px;
-
-    /* ESQUERDA E DIREITA */
-    --spider-left: 70%;
-
-    /* TAMANHO */
-    --spider-size: 70px;
+    --spider-top:-140px;
+    --spider-left:70%;
+    --spider-size:70px;
 
 }
 
 /* ===================================
-   HOMEM-ARANHA BALANÇANDO
+   HOMEM-ARANHA
 =================================== */
 
 .spiderman-container{
@@ -87,8 +77,6 @@ body{
 
 }
 
-/* TEIA */
-
 .teia{
 
     position:absolute;
@@ -105,8 +93,6 @@ body{
     transform:translateX(-50%);
 
 }
-
-/* IMAGEM */
 
 .spiderman-passando{
 
@@ -126,8 +112,6 @@ body{
 
 }
 
-/* ANIMAÇÃO */
-
 @keyframes balancar{
 
     0%{
@@ -145,7 +129,7 @@ body{
 }
 
 /* ===================================
-   MASCARA NO CANTO
+   MÁSCARA
 =================================== */
 
 .spiderman-canto{
@@ -302,7 +286,9 @@ input{
 
 }
 
-/* BOTÕES */
+/* ===================================
+   BOTÕES
+=================================== */
 
 button{
 
@@ -328,8 +314,6 @@ button{
 
 }
 
-/* BOTÃO CONFIRMAR */
-
 .btn-confirmar{
 
     background:#25D366;
@@ -343,8 +327,6 @@ button{
     transform:scale(1.02);
 
 }
-
-/* BOTÃO LOCALIZAÇÃO */
 
 .btn-local{
 
@@ -367,39 +349,27 @@ button{
 @media(max-width:500px){
 
     :root{
-
         --spider-size:120px;
-
     }
 
     body{
-
         padding:15px;
-
     }
 
     .convite{
-
         width:100%;
-
     }
 
     .teia{
-
         height:180px;
-
     }
 
     .spiderman-passando{
-
         top:160px;
-
     }
 
     .spiderman-canto{
-
         width:140px;
-
     }
 
 }
@@ -410,7 +380,7 @@ button{
 <body>
 
 <!-- ===================================
-     HOMEM-ARANHA BALANÇANDO
+     HOMEM-ARANHA
 =================================== -->
 
 <div class="spiderman-container">
@@ -424,7 +394,7 @@ button{
 </div>
 
 <!-- ===================================
-     MASCARA NO CANTO
+     MÁSCARA
 =================================== -->
 
 <img
@@ -467,15 +437,17 @@ src="image/Mascara.png">
     <!-- BOTÃO CONFIRMAR -->
     <button
     class="btn-confirmar"
-    onclick="confirmar()">
+    type="button"
+    onclick="confirmar(event)">
 
         CONFIRMAR PRESENÇA 🕷️
 
     </button>
 
-    <!-- BOTÃO LOCALIZAÇÃO -->
+    <!-- BOTÃO MAPA -->
     <button
     class="btn-local"
+    type="button"
     onclick="abrirMapa()">
 
         📍 ABRIR ROTA PARA A FESTA
@@ -490,7 +462,12 @@ src="image/Mascara.png">
    CONFIRMAR PRESENÇA
 =================================== */
 
-function confirmar(){
+function confirmar(event){
+
+    // IMPEDE REDIRECIONAMENTO
+    if(event){
+        event.preventDefault();
+    }
 
     let nome =
     document.getElementById("nome").value.trim();
@@ -498,7 +475,7 @@ function confirmar(){
     if(nome === ""){
 
         alert("Digite seu nome!");
-        return;
+        return false;
 
     }
 
@@ -514,16 +491,19 @@ function confirmar(){
         JSON.stringify(lista)
     );
 
-    // MENSAGEM PARA O CONVIDADO
+    // ALERTA
     alert("Presença confirmada com sucesso! 🕷️");
 
-    // LIMPA O INPUT
+    // LIMPA INPUT
     document.getElementById("nome").value = "";
+
+    // NÃO REDIRECIONA
+    return false;
 
 }
 
 /* ===================================
-   ABRIR ROTA GOOGLE MAPS
+   GOOGLE MAPS
 =================================== */
 
 function abrirMapa(){
