@@ -278,7 +278,7 @@ body{
 }
 
 /* ===================================
-   INPUT CORRIGIDO
+   INPUT
 =================================== */
 
 input{
@@ -297,7 +297,6 @@ input{
 
     font-size:16px;
 
-    /* EVITA ZOOM IOS */
     appearance:none;
     -webkit-appearance:none;
 
@@ -416,10 +415,8 @@ button{
 
 <div class="spiderman-container">
 
-    <!-- TEIA -->
     <div class="teia"></div>
 
-    <!-- HOMEM-ARANHA -->
     <img
     class="spiderman-passando"
     src="image/hOMEM ARANHA.png">
@@ -517,8 +514,11 @@ function confirmar(){
         JSON.stringify(lista)
     );
 
-    // ABRE A PAGINA DE CONFIRMADOS
-    window.location.href = "confirmado.html";
+    // MENSAGEM PARA O CONVIDADO
+    alert("Presença confirmada com sucesso! 🕷️");
+
+    // LIMPA O INPUT
+    document.getElementById("nome").value = "";
 
 }
 
